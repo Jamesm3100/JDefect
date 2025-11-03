@@ -132,20 +132,3 @@ RegisterCommand("checkdefect", function()
     end
 end, false)
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(250)
-
-        local playerPed = PlayerPedId()
-        
-        if IsPedOnFoot(playerPed) then
-            local playerCoords = GetEntityCoords(playerPed)
-            
-            local nearbyVehicle = GetClosestVehicle(playerCoords.x, playerCoords.y, playerCoords.z, 5.0, 0, 70)
-
-            if IsVehicleDefective(nearbyVehicle) then
-                ShowHelpText("This vehicle is ~r~DEFECTIVE~w~.")
-            end
-        end
-    end
-end)
